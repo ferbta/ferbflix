@@ -17,7 +17,7 @@ export default function FilterDropdown({ onFilterChange, currentFilter }: Filter
             >
                 <option value="">Tất cả trạng thái</option>
                 <option value={FilmStatus.COMPLETED}>Hoàn thành</option>
-                <option value={FilmStatus.NOT_COMPLETED}>Chưa hoàn thành</option>
+                <option value={FilmStatus.NOT_COMPLETED}>Còn tiếp</option>
                 <option value={FilmStatus.DOWNLOADED}>Đã tải xuống</option>
             </select>
             <div className="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">

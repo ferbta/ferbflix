@@ -22,7 +22,7 @@ const getStatusBadge = (status: string) => {
 const getStatusLabel = (status: string) => {
     const labels = {
         COMPLETED: 'Hoàn thành',
-        NOT_COMPLETED: 'Chưa hoàn thành',
+        NOT_COMPLETED: 'Còn tiếp',
         DOWNLOADED: 'Đã tải xuống',
     };
     return labels[status as keyof typeof labels] || status;
@@ -111,22 +111,42 @@ export default function FilmCard({ film, onEdit, onDelete }: FilmCardProps) {
             </div>
 
             {/* Film Info */}
-            <div className="p-3 sm:p-4 space-y-1.5 sm:space-y-2">
-                <h3 className="font-bold text-white text-sm sm:text-base md:text-lg line-clamp-1" title={film.vietnameseName}>
-                    {film.vietnameseName}
-                </h3>
-                <p className="text-zinc-400 text-xs sm:text-sm line-clamp-1" title={film.englishName}>
-                    {film.englishName}
-                </p>
+            <div className="p-3 sm:p-4 space-y-2 sm:space-y-2.5">
+                <div className="space-y-1">
+                    <h3 className="font-bold text-white text-sm sm:text-base md:text-lg line-clamp-1 group-hover:text-red-500 transition-colors" title={film.vietnameseName}>
+                        {film.vietnameseName}
+                    </h3>
+                    <p className="text-zinc-400 text-[10px] sm:text-xs md:text-sm line-clamp-1" title={film.englishName}>
+                        {film.englishName}
+                    </p>
+                </div>
 
-                <div className="flex items-center justify-between pt-1 sm:pt-2 gap-1.5">
+                <div className="flex flex-nowrap items-center justify-between gap-1 pt-1 sm:pt-1.5">
                     {/* Episode Count Badge */}
-                    <span className="px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-[10px] sm:text-xs font-medium border bg-purple-500/20 text-purple-400 border-purple-500/50 whitespace-nowrap">
+                    <span className="inline-flex items-center gap-1 px-1 py-0.5 sm:px-1.5 sm:py-0.75 rounded-md text-[10px] sm:text-xs font-semibold border bg-purple-500/10 text-purple-400 border-purple-500/30 whitespace-nowrap shadow-sm shadow-purple-500/5">
+                        <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                        </svg>
                         {film.episodeCount} tập
                     </span>
 
                     {/* Status Badge */}
-                    <span className={`px-1.5 py-0.5 sm:px-2 sm:py-1 rounded text-[10px] sm:text-xs font-medium border ${getStatusBadge(film.status)} whitespace-nowrap`}>
+                    <span className={`inline-flex items-center gap-1 px-1 py-0.5 sm:px-1.5 sm:py-0.75 rounded-md text-[10px] sm:text-xs font-semibold border ${getStatusBadge(film.status)} whitespace-nowrap shadow-sm`}>
+                        {film.status === 'COMPLETED' && (
+                            <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
+                            </svg>
+                        )}
+                        {film.status === 'NOT_COMPLETED' && (
+                            <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        )}
+                        {film.status === 'DOWNLOADED' && (
+                            <svg className="w-2.5 h-2.5 sm:w-3 sm:h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                        )}
                         {getStatusLabel(film.status)}
                     </span>
                 </div>
