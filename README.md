@@ -46,7 +46,7 @@ A Netflix-style film management web application built with Next.js, MongoDB, Pri
      ```
    - Update the `DATABASE_URL` in `.env` with your MongoDB connection string:
      ```
-     DATABASE_URL="mongodb+srv://username:password@cluster.mongodb.net/filmdb?retryWrites=true&w=majority"
+     DATABASE_URL=""
      ```
 
 4. **Generate Prisma Client**:
