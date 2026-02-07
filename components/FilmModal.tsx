@@ -220,7 +220,7 @@ export default function FilmModal({ isOpen, onClose, onSubmit, film }: FilmModal
                             onChange={handleChange}
                             className="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-red-600 focus:border-transparent"
                         >
-                            <option value={FilmStatus.NOT_COMPLETED}>Chưa hoàn thành</option>
+                            <option value={FilmStatus.NOT_COMPLETED}>Còn tiếp</option>
                             <option value={FilmStatus.COMPLETED}>Hoàn thành</option>
                             <option value={FilmStatus.DOWNLOADED}>Đã tải xuống</option>
                         </select>

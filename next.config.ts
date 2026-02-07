@@ -11,8 +11,13 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: '**.cloudinary.com',
       },
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
     ],
   },
+  crossOrigin: 'anonymous',
 };
 
 export default nextConfig;
